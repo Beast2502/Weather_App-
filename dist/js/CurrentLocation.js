@@ -1,9 +1,9 @@
 export default class CurrentLocation{
     constructor(){
-        this._name = "Current Location"
+        this._name = "Current Location";
         this._lat = null;
         this._lon = null;
-        this._unit="imperial";
+        this._unit = "imperial";
     }
 
     getName(){
@@ -11,7 +11,7 @@ export default class CurrentLocation{
     }
 
     setName(name){
-        this._name =name;
+        this._name = name;
     }
 
     getLat(){
@@ -19,7 +19,7 @@ export default class CurrentLocation{
     }
 
     setLat(lat){
-        this._lat= lat;
+        this._lat = lat;
     }
 
     getLon(){
@@ -35,10 +35,11 @@ export default class CurrentLocation{
     }
 
     setUnit(unit){
-        this._unit = unit
+        this._unit = unit;
     }
 
     toggleUnit(){
-        this._unit = this._unit === "imperial" ? "metric" : "imperial"
+        this._unit = this._unit === 'imperial' ? 'metric' : 'imperial';
     }
+
 }
