@@ -2,6 +2,8 @@ import {
   setLocationObject,
   getHomeLocation,
   cleanText,
+  getCordsFromApi,
+  getWeatherFromCoords,
 } from "./dataFunction.js";
 import {
   setPlaceholderText,
@@ -143,24 +145,33 @@ const submitNewLocation = async (event) => {
   const coordsData = await getCordsFromApi(entryText,currentLoc.getUnit());
 
 
-if(coordsData.cod === 200){
-    //    work with api data
+  if(coordsData){
+    if(coordsData.cod === 200){
+        //    work with api data
+    
+        const myCoordsObj = {
+            lat : coordsData.coord.lat,
+            lon: coordsData.coord.lon,
+            name : coordsData.sys.country ? `${coordsData.name} , ${coordsData.sys.country}` : coordsData.name
+        };
+        // success 
+        setLocationObject(currentLoc, myCoordsObj);
+        updateDataAndDisplay(currentLoc);
+    
+    }
+    else{
+        displayApiError(coordsData);
+    }
+  }
+  else{
+    displayError('Connection Error' , 'Connection Error')
+  }
 
-    const myCoordsObj = {
-
-    };
-    // success 
-    setLocationObject(currentLoc, myCoordsObj);
-    updateDataAndDisplay(currentLoc);
-
-}
-else{
-    displayApiError(coordsData);
-}
 };
 
 const updateDataAndDisplay = async (locationObj) => {
-  console.log(locationObj);
-  // const weatherJson = await getWeatherFromCoords(locationObj);
-  // if(weatherJson) updateDisplay(weatherJson,locationObj);
+//   console.log(locationObj);
+  const weatherJson = await getWeatherFromCoords(locationObj);
+  console.log(weatherJson);
+//   if(weatherJson) updateDisplay(weatherJson,locationObj);
 };
