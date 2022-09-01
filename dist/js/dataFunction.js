@@ -17,8 +17,7 @@ export const getWeatherFromCoords = async (locationObj) => {
   const lat = locationObj.getLat();
   const lon = locationObj.getLon();
   const units = locationObj.getUnit();
-  const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,daily&appid=b9f9c5a0bf941295819c9000845a7387`
-//   const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts=${units}&appid=${WEATHER_API_KEY}`;
+  const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts=${units}&appid=${WEATHER_API_KEY}`;
   try {
     const weatherStream = await fetch(url);
     const weatherJson = await weatherStream.json();
